@@ -48,3 +48,21 @@
     }
   });
 })();
+
+function initialize() {
+  var mapCanvas = document.getElementById('map');
+  var mapOptions = {
+         center: new google.maps.LatLng(28.6744781,-106.0794246),
+         zoom: 16,
+         mapTypeId: google.maps.MapTypeId.HYBRID,
+  };
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(28.6744781,-106.0777246),
+        map: map
+
+    });
+    marker.setMap(map);
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
