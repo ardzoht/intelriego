@@ -374,3 +374,26 @@ main {
   z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
   opacity: .7;
 }
+
+.area {
+  color: darkslategray;
+}
+
+.btn {
+  text-align:center;
+  margin: 50px;
+}
+
+.buttons {
+  margin: 0 0 0 40px;
+}
+
+.text {
+  display:inline-block;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+span {
+  display:block;
+}
