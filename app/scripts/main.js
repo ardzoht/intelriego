@@ -68,8 +68,10 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 $(document).ready(function () {
+    console.log("sup");
     xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
     xively.feed.get (2064917552, function(data) {
+        console.log("2sup")
         console.log(data);
-    })
+    });
 });
