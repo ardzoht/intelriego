@@ -25,18 +25,20 @@
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
-
     <meta name="theme-color" content="#3372DF">
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    </script>
 
     <!-- Page styles -->
     <link rel="stylesheet" href="styles/main.css">
 </head>
-<body>
+<body class= "status">
 <header class="app-bar promote-layer">
     <div class="app-bar-container">
         <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
@@ -83,7 +85,12 @@
         <h2><strong>Area 1</strong></h2>
 
         <div class="sensor">
-            <img class="grass" src="images/grass.svg">
+            <object type="image/svg+xml" data="images/riego.svg" class= "riego1" 
+            id= "hose1">This browser does not support SVG. Use Chrome plz...</object>
+            <div class= "grass">&nbsp</div>
+            <!--BUTTON TO TEST SVG ANIMATION -->
+            <button onclick= "regar(1)">Regar</button>
+            <!--<img class="grass" src="images/grass.svg">-->
             <h3>Sensor Level:</h3>
             <h3>Moisture:</h3>
             <h4>Actual Configuration:</h4>
@@ -93,7 +100,12 @@
     <div class="g-medium--1 g-medium--last g-wide--2 g--last area">
         <h2><strong>Area 2</strong></h2>
         <div class="sensor">
-            <img src="images/grass.svg">
+            <object type="image/svg+xml" data="images/riego.svg" class= "riego2"
+            id= "hose2">This browser does not support SVG. Use Chrome plz...</object>
+            <div class= "grass">&nbsp</div>
+            <!--BUTTON TO TEST SVG ANIMATION -->
+            <button onclick= "regar(2)">Regar</button>
+            <!--<img src="images/grass.svg">-->
             <h3>Sensor Level:</h3>
             <h3>Moisture:</h3>
             <h4>Actual Configuration:</h4>
@@ -103,5 +115,47 @@
     </div>
 
 </section>
+    <script>
+    var toggle = true;
+    /*Recieves the hose you want to activate*/
+    function regar(hose){
+        toggle = !toggle;
+        console.log(toggle);
+        if(toggle === false){
+            if (hose === 1){
+                console.log("regar1 called");
+                $("#hose1").css("display", "inline-block");
+                //CALL THIS TO PRODUCE ANIMATION
+                $("#hose1").addClass('regar');
+                //toggle= true;
+            }
+            if (hose === 2){
+                console.log("regar2 called");
+                $("#hose2").css("display", "inline-block");
+                //CALL THIS TO PRODUCE ANIMATIO
+                $("#hose2").addClass('regar');
+                //toggle= true;
+            }
+        }
+        if(toggle === true){
+            toggle = false;
+            stop_regar(hose);
+         }
+    }
+    /*Recieves the hose you want to desactivate*/
+    function stop_regar(hose){
+        if (hose === 1){
+            console.log("regar1 called");
+            $("#hose1").css("display", "inline-block");
+            $("#hose1").removeClass('regar');
+        }
+        if (hose === 2){
+            console.log("regar2 called");
+            $("#hose2").css("display", "inline-block");
+            $("#hose2").removeClass('regar');
+            toggle= true;
+            }
+    }
+    </script>
 </body>
 </html>

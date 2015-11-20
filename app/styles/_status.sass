@@ -1,0 +1,36 @@
+.status
+	.grass
+		background-image: url('../images/grass.svg')
+		background-size: 100% 100%
+		min-height: 100vh
+		margin: -30% 0
+	.riegosvg
+		max-width: 50%
+		max-height: 50%
+		margin: 0 0 -50% 10%
+		display: none
+		opacity: 0
+		fill: blue
+	.riego1
+		@extend .riegosvg
+	.riego1.regar
+		display: inline-block 
+		animation: regar 1s ease infinite
+	.riego2
+		@extend .riegosvg
+	.riego2.regar
+		display: inline-block 
+		animation: regar 1s ease infinite
+	@keyframes regar
+		0% 
+			opacity: 0
+			fill: blue
+		25%
+			opacity: 0
+		50%
+			opacity: .5
+		75%
+			opacity: 1
+			fill: blue
+			color: blue
+		
