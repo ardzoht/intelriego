@@ -70,3 +70,17 @@ google.maps.event.addDomListener(window, 'load', initialize);
 $("#fade").click(function() {
     $(".app-bar-container").slideUp();
 });
+
+$(document).ready(function () {
+    var baseUrl = "https://api.xively.com/v2/feeds/2064917552";
+    $.ajax({
+        url: baseUrl,
+        headers: { "Content-Type":"application/json","Accept": "application/json","Authorization": "Token HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH"},
+        success: function(data) {
+            console.log(data);
+        },
+        error: function (data, errorThrown) {
+            alert(3);
+        }
+    });
+});
