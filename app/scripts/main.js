@@ -16,6 +16,149 @@
  *  limitations under the License
  *
  */
+$(document).ready(function () {
+    xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
+    var feedID        = 2064917552,          // Feed ID
+        datastreamID  = "sm1",       // Datastream ID
+        selector      = "#sensorl1";   // Your element on the page
+    // Get datastream data from Xively
+    xively.datastream.get (feedID, datastreamID, function ( datastream ) {
+
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $(selector).append(datastream["current_value"]);
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe(feedID, datastreamID, function (event, datastream_updated) {
+            var date = new Date();
+            // Display the current value from the updated datastream
+            $("#date").append(date);
+            $(selector).append(datastream_updated["current_value"]);
+        });
+    });
+        xively.datastream.get (feedID, "valve1", function ( datastream ) {
+            // WARNING: This code is only executed when we get a response back from Xively,
+            // it will likely execute after the rest your script
+            //
+            // NOTE: The variable "datastream" will contain all the Datastream information
+            // as an object. The structure of Datastream objects can be found at:
+            // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+            // Display the current value from the datastream
+            if (datastream["current_value"] == 1 ){
+                $("#valve1").append("On");
+            }
+            else {
+                $("#valve1").append("Off");
+            }
+
+            // Getting realtime!
+            // The function associated with the subscribe method will be executed
+            // every time there is an update to the datastream
+            xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) {
+                // Display the current value from the updated datastream
+                $("#valve1").append( datastream_updated["current_value"] );
+            });
+
+    });
+    xively.datastream.get (feedID, "action1", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $("#config1").append( datastream["current_value"] );
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe( feedID,"action1", function ( event , datastream_updated ) {
+            // Display the current value from the updated datastream
+            $("#config1").append( datastream_updated["current_value"] );
+        });
+
+    });
+    xively.datastream.get (feedID, "sm2", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $("#sensorl2").append( datastream["current_value"] );
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe( feedID,"sm2", function ( event , datastream_updated ) {
+            // Display the current value from the updated datastream
+            $("#sensorl2").append( datastream_updated["current_value"] );
+        });
+
+    });
+    xively.datastream.get (feedID, "action2", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $("#config2").append( datastream["current_value"] );
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe( feedID,"action2", function ( event , datastream_updated ) {
+            // Display the current value from the updated datastream
+            $("#config2").append( datastream_updated["current_value"] );
+        });
+
+    });
+    xively.datastream.get (feedID, "valve2", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        if (datastream["current_value"] == 1 ){
+            $("#valve2").append("On");
+        }
+        else {
+            $("#valve2").append("Off");
+        }
+
+
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe( feedID,"valve2", function ( event , datastream_updated ) {
+            // Display the current value from the updated datastream
+            $("#valve2").append( datastream_updated["current_value"] );
+        });
+
+    });
+
+
+});
 (function () {
   'use strict';
 
@@ -67,11 +210,3 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-$(document).ready(function () {
-    console.log("sup");
-    xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
-    xively.feed.get (2064917552, function(data) {
-        console.log("2sup")
-        console.log(data);
-    });
-});

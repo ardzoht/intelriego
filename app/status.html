@@ -79,8 +79,8 @@
             </div>
     </div>
     <div class="g-medium--1 g-medium--last g-wide--2 g--last">
-        <h4>Last Updated: 2014-09-10 10:56:31 -0700</h4>
-        <button class="button--primary btn">Configure</button>
+        <h4 id="date">Last Updated:  </h4>
+        <form action="config.html"><button class="button--primary btn" >Configure</button></form>
     </div>
     <div class="g-medium--1 g-wide--2 area">
         <h2><strong>Area 1</strong></h2>
@@ -92,9 +92,9 @@
             <!--BUTTON TO TEST SVG ANIMATION -->
             <button onclick= "regar(1)">Regar</button>
             <!--<img class="grass" src="images/grass.svg">-->
-            <h3>Sensor Level:</h3>
-            <h3>Moisture:</h3>
-            <h4>Actual Configuration:</h4>
+            <h3 id="sensorl1">Sensor Level:  </h3>
+            <h3 id="valve1">Valve:  </h3>
+            <h4 id="config1">Actual Configuration:  </h4>
 
         </div>
     </div>
@@ -107,9 +107,9 @@
             <!--BUTTON TO TEST SVG ANIMATION -->
             <button onclick= "regar(2)">Regar</button>
             <!--<img src="images/grass.svg">-->
-            <h3>Sensor Level:</h3>
-            <h3>Moisture:</h3>
-            <h4>Actual Configuration:</h4>
+            <h3 id="sensorl2">Sensor Level:  </h3>
+            <h3 id="valve2">Valve:  </h3>
+            <h4 id="config2">Actual Configuration:  </h4>
 
         <p></p>
     </div>
@@ -162,6 +162,7 @@
 
 <!-- build:js scripts/main.min.js -->
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://d23cj0cdvyoxg0.cloudfront.net/xivelyjs-1.0.4.min.js"></script>
 <script src="scripts/main.js"></script>
 
 <!-- endbuild -->
