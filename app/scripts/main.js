@@ -1,21 +1,208 @@
-/*!
- *
- *  Web Starter Kit
- *  Copyright 2014 Google Inc. All rights reserved.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *    https://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License
- *
- */
+$(document).ready(function () {
+    xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
+    var feedID        = 2064917552,          // Feed ID
+        datastreamID  = "sm1",       // Datastream ID
+        selector      = "#sensorl1";   // Your element on the page
+    // Get datastream data from Xively
+
+    $("#submitman1").on('click', function () {
+        var m = $('form input[type=radio]:checked').val();
+        xively.datastream.update("2064917552", "action1", {current_value: parseInt(m)}, function () {
+            alert("Configuration sent");
+        });
+    });
+    $("#submitman2").on('click', function () {
+        var m = $('form input[type=radio]:checked').val();
+        xively.datastream.update("2064917552", "action2", {current_value: parseInt(m)}, function () {
+            alert("Configuration sent");
+        });
+    });
+    $("#submitauto1").on('click', function () {
+        var hl1 = $('#hl11').val();
+        var hl2 = $('#hl12').val();
+        xively.datastream.update("2064917552", "high_limit1", {current_value: parseInt(hl1)}, function () {
+            alert("Configuration sent");
+        });
+        xively.datastream.update("2064917552", "high_limit2", {current_value: parseInt(hl2)}, function () {
+        });
+    });
+    $("#submitauto2").on('click', function () {
+        var hl1 = $('#hl21').val();
+        var hl2 = $('#hl22').val();
+        xively.datastream.update("2064917552", "high_limit1", {current_value: parseInt(hl1)}, function () {
+            alert("Configuration sent");
+        });
+        xively.datastream.update("2064917552", "high_limit2", {current_value: parseInt(hl2)}, function () {
+        });
+    });
+
+
+    xively.datastream.get (feedID, datastreamID, function ( datastream ) {
+
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $(selector).append(datastream["current_value"]);
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe(feedID, datastreamID, function (event, datastream_updated) {
+            var date = new Date();
+            // Display the current value from the updated datastream
+            $("#date").append(date);
+            $(selector).append(datastream_updated["current_value"]);
+        });
+    });
+        xively.datastream.get (feedID, "valve1", function ( datastream ) {
+            // WARNING: This code is only executed when we get a response back from Xively,
+            // it will likely execute after the rest your script
+            //
+            // NOTE: The variable "datastream" will contain all the Datastream information
+            // as an object. The structure of Datastream objects can be found at:
+            // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+            // Display the current value from the datastream
+            if (datastream["current_value"] == 1 ){
+                $("#valve1").append("On");
+            }
+            else {
+                $("#valve1").append("Off");
+            }
+
+            // Getting realtime!
+            // The function associated with the subscribe method will be executed
+            // every time there is an update to the datastream
+            xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) {
+                // Display the current value from the updated datastream
+                $("#valve1").append( datastream_updated["current_value"] );
+            });
+
+    });
+    xively.datastream.get (feedID, "action1", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $("#config1").append( datastream["current_value"] );
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe( feedID,"action1", function ( event , datastream_updated ) {
+            // Display the current value from the updated datastream
+            $("#config1").append( datastream_updated["current_value"] );
+        });
+
+    });
+    xively.datastream.get (feedID, "sm2", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $("#sensorl2").append( datastream["current_value"] );
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe( feedID,"sm2", function ( event , datastream_updated ) {
+            // Display the current value from the updated datastream
+            $("#sensorl2").append( datastream_updated["current_value"] );
+        });
+
+    });
+    xively.datastream.get (feedID, "action2", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $("#config2").append( datastream["current_value"] );
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe( feedID,"action2", function ( event , datastream_updated ) {
+            // Display the current value from the updated datastream
+            $("#config2").append( datastream_updated["current_value"] );
+        });
+
+    });
+    xively.datastream.get (feedID, "valve2", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        if (datastream["current_value"] == 1 ){
+            $("#valve2").append("On");
+        }
+        else {
+            $("#valve2").append("Off");
+        }
+
+
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe( feedID,"valve2", function ( event , datastream_updated ) {
+            // Display the current value from the updated datastream
+            $("#valve2").append( datastream_updated["current_value"] );
+        });
+
+    });
+
+    $("#area1auto").on('click', function() {
+        $(".manual1").css({"display": "none"});
+        $(".auto1").css({"display": "block"});
+        $("#submitman1").css({"display": "none"});
+        $("#submitauto1").css({"display": "block"});
+    });
+
+    $("#area2auto").on('click', function() {
+        $(".auto2").css({"display": "block"});
+        $(".manual2").css({"display": "none"});
+        $("#submitman2").css({"display": "none"});
+        $("#submitauto2").css({"display": "block"});
+    });
+
+    $("#area1man").on('click', function() {
+        $(".manual1").css({"display": "block"});
+        $(".auto1").css({"display": "none"});
+        $("#submitman1").css({"display": "block"});
+        $("#submitauto1").css({"display": "none"});
+    });
+
+    $("#area2man").on('click', function() {
+        $(".manual2").css({"display": "block"});
+        $(".auto2").css({"display": "none"});
+        $("#submitman2").css({"display": "block"});
+        $("#submitauto2").css({"display": "none"});
+    });
+
+
+});
+
 (function () {
   'use strict';
 
@@ -67,11 +254,3 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-$(document).ready(function () {
-    console.log("sup");
-    xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
-    xively.feed.get (2064917552, function(data) {
-        console.log("2sup")
-        console.log(data);
-    });
-});
