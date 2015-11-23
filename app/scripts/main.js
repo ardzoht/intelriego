@@ -20,16 +20,16 @@ $(document).ready(function () {
     $("#submitauto1").on('click', function () {
         var hl1 = $('#hl11').val();
         var hl2 = $('#hl12').val();
-        xively.datastream.update("2064917552", "high_limit1", {current_value: parseInt(hl1)}, function () {
+        xively.datastream.update("2064917552", "low_limit1", {current_value: parseInt(hl1)}, function () {
             alert("Configuration sent");
         });
-        xively.datastream.update("2064917552", "high_limit2", {current_value: parseInt(hl2)}, function () {
+        xively.datastream.update("2064917552", "high_limit1", {current_value: parseInt(hl2)}, function () {
         });
     });
     $("#submitauto2").on('click', function () {
         var hl1 = $('#hl21').val();
         var hl2 = $('#hl22').val();
-        xively.datastream.update("2064917552", "high_limit1", {current_value: parseInt(hl1)}, function () {
+        xively.datastream.update("2064917552", "low_limit2", {current_value: parseInt(hl1)}, function () {
             alert("Configuration sent");
         });
         xively.datastream.update("2064917552", "high_limit2", {current_value: parseInt(hl2)}, function () {
