@@ -92,8 +92,8 @@
             <!--BUTTON TO TEST SVG ANIMATION -->
             <button onclick= "regar(1)">Regar</button>
             <!--<img class="grass" src="images/grass.svg">-->
-            <h3>Sensor Level:</h3>
-            <h3>Moisture:</h3>
+            <h3>Sensor Level: 33</h3>
+            <h3>Moisture: 38</h3>
             <h4>Actual Configuration:</h4>
 
         </div>
@@ -107,39 +107,41 @@
             <!--BUTTON TO TEST SVG ANIMATION -->
             <button onclick= "regar(2)">Regar</button>
             <!--<img src="images/grass.svg">-->
-            <h3>Sensor Level:</h3>
-            <h3>Moisture:</h3>
+            <h3>Sensor Level:33</h3>
+            <h3>Moisture: 38</h3>
             <h4>Actual Configuration:</h4>
 
         <p></p>
     </div>
     </div>
+    <p>Flow: 150</p>
 
 </section>
 
     <script>
     var toggle = true;
+    //regar(1);
     /*Recieves the hose you want to activate*/
     function regar(hose){
         toggle = !toggle;
         console.log(toggle);
         if(toggle === false){
             if (hose === 1){
-                console.log("regar1 called");
+                //console.log("regar1 called");
                 $("#hose1").css("display", "inline-block");
                 //CALL THIS TO PRODUCE ANIMATION
                 $("#hose1").addClass('regar');
                 //toggle= true;
             }
             if (hose === 2){
-                console.log("regar2 called");
+                //console.log("regar2 called");
                 $("#hose2").css("display", "inline-block");
                 //CALL THIS TO PRODUCE ANIMATIO
                 $("#hose2").addClass('regar');
                 //toggle= true;
             }
         }
-        if(toggle === true)
+        if(toggle === true){
             toggle = false;
             stop_regar(hose);
          }
@@ -147,12 +149,12 @@
     /*Recieves the hose you want to desactivate*/
     function stop_regar(hose){
         if (hose === 1){
-            console.log("regar1 called");
+            //console.log("regar1 called");
             $("#hose1").css("display", "inline-block");
             $("#hose1").removeClass('regar');
         }
         if (hose === 2){
-            console.log("regar2 called");
+            //console.log("regar2 called");
             $("#hose2").css("display", "inline-block");
             $("#hose2").removeClass('regar');
             toggle= true;
@@ -162,7 +164,7 @@
 
 <!-- build:js scripts/main.min.js -->
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="scripts/main.js"></script>
+<!--<script src="scripts/main.js"></script>-->
 
 <!-- endbuild -->
 
