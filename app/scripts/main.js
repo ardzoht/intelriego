@@ -2,7 +2,6 @@ $(document).ready(function () {
 
 
     xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
-
     var feedID        = 2064917552,          // Feed ID
         datastreamID  = "sm1",       // Datastream ID
         selector      = "#sensorl1";   // Your element on the page
@@ -105,6 +104,18 @@ $(document).ready(function () {
         });
 
     });
+    xively.datastream.get("2064917552", "Flow", function ( datastream ) {
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $("#flowg").append("0.0");
+
+    });
 
 
     xively.datastream.get (feedID, "sm2", function ( datastream ) {
@@ -175,7 +186,7 @@ $(document).ready(function () {
 
     });
 
-    xively.datastream.get("2064917552", "Flow", function ( datastream ) {
+    xively.datastream.get(feedID, "Flow", function ( datastream ) {
 
         // WARNING: This code is only executed when we get a response back from Xively,
         // it will likely execute after the rest your script
@@ -186,7 +197,15 @@ $(document).ready(function () {
 
         // Display the current value from the datastream
         $("#flowg").append(datastream["current_value"]);
-        
+
+        // Getting realtime!
+        // The function associated with the subscribe method will be executed
+        // every time there is an update to the datastream
+        xively.datastream.subscribe(feedID, "Flow", function (event, datastream_updated) {
+
+            // Display the current value from the updated datastream
+            $("#flowg").append(datastream_updated["current_value"]);
+        });
     });
 
     $("#areaauto").on('click', function() {
