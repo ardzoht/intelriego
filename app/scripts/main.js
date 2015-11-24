@@ -2,6 +2,7 @@ $(document).ready(function () {
 
 
     xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
+
     var feedID        = 2064917552,          // Feed ID
         datastreamID  = "sm1",       // Datastream ID
         selector      = "#sensorl1";   // Your element on the page
@@ -36,7 +37,6 @@ $(document).ready(function () {
         xively.datastream.update("2064917552", "modo", {current_value: parseInt("1")}, function () {
         });
     });
-
 
     xively.datastream.get(feedID, datastreamID, function ( datastream ) {
 
@@ -173,6 +173,20 @@ $(document).ready(function () {
             $("#valve2").append( datastream_updated["current_value"] );
         });
 
+    });
+
+    xively.datastream.get("2064917552", "Flow", function ( datastream ) {
+
+        // WARNING: This code is only executed when we get a response back from Xively,
+        // it will likely execute after the rest your script
+        //
+        // NOTE: The variable "datastream" will contain all the Datastream information
+        // as an object. The structure of Datastream objects can be found at:
+        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+        // Display the current value from the datastream
+        $("#flowg").append(datastream["current_value"]);
+        
     });
 
     $("#areaauto").on('click', function() {
