@@ -37,6 +37,10 @@ $(document).ready(function () {
         });
         xively.datastream.update("2064917552", "modo", {current_value: parseInt("1")}, function () {
         });
+        $('#hl22').val(hl4);
+        $('#hl21').val(hl3);
+        $('#hl12').val(hl2);
+        $('#hl11').val(hl1);
     });
 
     xively.datastream.get(feedID, datastreamID, function ( datastream ) {
