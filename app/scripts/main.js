@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+    var date = new Date();
+    // Display the current value from the updated datastream
+    $("#date").append(date);
 
     xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
     var feedID        = 2064917552,          // Feed ID
@@ -53,9 +55,7 @@ $(document).ready(function () {
         // The function associated with the subscribe method will be executed
         // every time there is an update to the datastream
         xively.datastream.subscribe(feedID, datastreamID, function (event, datastream_updated) {
-            var date = new Date();
-            // Display the current value from the updated datastream
-            $("#date").append(date);
+
             $(selector).append(datastream_updated["current_value"]);
         });
     });
