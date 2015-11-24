@@ -104,18 +104,6 @@ $(document).ready(function () {
         });
 
     });
-    xively.datastream.get("2064917552", "Flow", function ( datastream ) {
-        // WARNING: This code is only executed when we get a response back from Xively,
-        // it will likely execute after the rest your script
-        //
-        // NOTE: The variable "datastream" will contain all the Datastream information
-        // as an object. The structure of Datastream objects can be found at:
-        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
-
-        // Display the current value from the datastream
-        $("#flowg").append("0.0");
-
-    });
 
 
     xively.datastream.get (feedID, "sm2", function ( datastream ) {
