@@ -5,34 +5,33 @@ $(document).ready(function () {
         selector      = "#sensorl1";   // Your element on the page
     // Get datastream data from Xively
 
-    $("#submitman1").on('click', function () {
-        var m = $('form input[type=radio]:checked').val();
-        xively.datastream.update("2064917552", "action1", {current_value: parseInt(m)}, function () {
+    $("#submitman").on('click', function () {
+        var m1 = $("form input[type=radio][name='area1']:checked").val();
+        var m2 = $("form input[type=radio][name='area2']:checked").val();
+        xively.datastream.update("2064917552", "action1", {current_value: parseInt(m1)}, function () {
             alert("Configuration sent");
         });
-    });
-    $("#submitman2").on('click', function () {
-        var m = $('form input[type=radio]:checked').val();
-        xively.datastream.update("2064917552", "action2", {current_value: parseInt(m)}, function () {
-            alert("Configuration sent");
+        xively.datastream.update("2064917552", "action2", {current_value: parseInt(m2)}, function () {
+        });
+        xively.datastream.update("2064917552", "modo", {current_value: parseInt("0")}, function () {
         });
     });
-    $("#submitauto1").on('click', function () {
+
+    $("#submitauto").on('click', function () {
         var hl1 = $('#hl11').val();
         var hl2 = $('#hl12').val();
+        var hl3 = $('#hl21').val();
+        var hl4 = $('#hl22').val();
         xively.datastream.update("2064917552", "low_limit1", {current_value: parseInt(hl1)}, function () {
             alert("Configuration sent");
         });
         xively.datastream.update("2064917552", "high_limit1", {current_value: parseInt(hl2)}, function () {
         });
-    });
-    $("#submitauto2").on('click', function () {
-        var hl1 = $('#hl21').val();
-        var hl2 = $('#hl22').val();
-        xively.datastream.update("2064917552", "low_limit2", {current_value: parseInt(hl1)}, function () {
-            alert("Configuration sent");
+        xively.datastream.update("2064917552", "low_limit2", {current_value: parseInt(hl3)}, function () {
         });
-        xively.datastream.update("2064917552", "high_limit2", {current_value: parseInt(hl2)}, function () {
+        xively.datastream.update("2064917552", "high_limit2", {current_value: parseInt(hl4)}, function () {
+        });
+        xively.datastream.update("2064917552", "modo", {current_value: parseInt("1")}, function () {
         });
     });
 
@@ -172,32 +171,22 @@ $(document).ready(function () {
 
     });
 
-    $("#area1auto").on('click', function() {
+    $("#areaauto").on('click', function() {
         $(".manual1").css({"display": "none"});
-        $(".auto1").css({"display": "block"});
-        $("#submitman1").css({"display": "none"});
-        $("#submitauto1").css({"display": "block"});
-    });
-
-    $("#area2auto").on('click', function() {
-        $(".auto2").css({"display": "block"});
         $(".manual2").css({"display": "none"});
-        $("#submitman2").css({"display": "none"});
-        $("#submitauto2").css({"display": "block"});
+        $(".auto1").css({"display": "block"});
+        $(".auto2").css({"display": "block"});
+        $("#submitman").css({"display": "none"});
+        $("#submitauto").css({"display": "block"});
     });
 
-    $("#area1man").on('click', function() {
+    $("#areaman").on('click', function() {
         $(".manual1").css({"display": "block"});
-        $(".auto1").css({"display": "none"});
-        $("#submitman1").css({"display": "block"});
-        $("#submitauto1").css({"display": "none"});
-    });
-
-    $("#area2man").on('click', function() {
         $(".manual2").css({"display": "block"});
+        $(".auto1").css({"display": "none"});
         $(".auto2").css({"display": "none"});
-        $("#submitman2").css({"display": "block"});
-        $("#submitauto2").css({"display": "none"});
+        $("#submitman").css({"display": "block"});
+        $("#submitauto").css({"display": "none"});
     });
 
 
