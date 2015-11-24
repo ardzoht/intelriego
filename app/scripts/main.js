@@ -1,8 +1,5 @@
 $(document).ready(function () {
-    $('#hl11').val($.cookie("hl1"));
-    $('#hl12').val($.cookie("hl2"));
-    $('#hl21').val($.cookie("hl3"));
-    $('#hl22').val($.cookie("hl4"));
+
 
     xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
     var feedID        = 2064917552,          // Feed ID
@@ -27,10 +24,6 @@ $(document).ready(function () {
         var hl2 = $('#hl12').val();
         var hl3 = $('#hl21').val();
         var hl4 = $('#hl22').val();
-        $.cookie("hl1", hl1);
-        $.cookie("hl2", hl2);
-        $.cookie("hl3", hl3);
-        $.cookie("hl4", hl4);
         xively.datastream.update("2064917552", "low_limit1", {current_value: parseInt(hl1)}, function () {
             alert("Configuration sent");
         });
