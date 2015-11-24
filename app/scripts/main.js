@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $('#hl11').val($.cookie("hl1"));
+    $('#hl12').val($.cookie("hl2"));
+    $('#hl21').val($.cookie("hl3"));
+    $('#hl22').val($.cookie("hl4"));
+
     xively.setKey( "HaflOQg5JGVKNtg5HGyBuOYahDy7LRIb4jK0U1AWaMmemDyH" );
     var feedID        = 2064917552,          // Feed ID
         datastreamID  = "sm1",       // Datastream ID
@@ -22,6 +27,10 @@ $(document).ready(function () {
         var hl2 = $('#hl12').val();
         var hl3 = $('#hl21').val();
         var hl4 = $('#hl22').val();
+        $.cookie("hl1", hl1);
+        $.cookie("hl2", hl2);
+        $.cookie("hl3", hl3);
+        $.cookie("hl4", hl4);
         xively.datastream.update("2064917552", "low_limit1", {current_value: parseInt(hl1)}, function () {
             alert("Configuration sent");
         });
@@ -36,7 +45,7 @@ $(document).ready(function () {
     });
 
 
-    xively.datastream.get (feedID, datastreamID, function ( datastream ) {
+    xively.datastream.get(feedID, datastreamID, function ( datastream ) {
 
         // WARNING: This code is only executed when we get a response back from Xively,
         // it will likely execute after the rest your script
@@ -58,7 +67,7 @@ $(document).ready(function () {
             $(selector).append(datastream_updated["current_value"]);
         });
     });
-        xively.datastream.get (feedID, "valve1", function ( datastream ) {
+        xively.datastream.get("2064917552", "valve1", function ( datastream ) {
             // WARNING: This code is only executed when we get a response back from Xively,
             // it will likely execute after the rest your script
             //
@@ -77,13 +86,13 @@ $(document).ready(function () {
             // Getting realtime!
             // The function associated with the subscribe method will be executed
             // every time there is an update to the datastream
-            xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) {
+            xively.datastream.subscribe("2064917552", "valve1", function ( event , datastream_updated ) {
                 // Display the current value from the updated datastream
                 $("#valve1").append( datastream_updated["current_value"] );
             });
 
     });
-    xively.datastream.get (feedID, "action1", function ( datastream ) {
+    xively.datastream.get("2064917552", "action1", function ( datastream ) {
         // WARNING: This code is only executed when we get a response back from Xively,
         // it will likely execute after the rest your script
         //
@@ -97,12 +106,14 @@ $(document).ready(function () {
         // Getting realtime!
         // The function associated with the subscribe method will be executed
         // every time there is an update to the datastream
-        xively.datastream.subscribe( feedID,"action1", function ( event , datastream_updated ) {
+        xively.datastream.subscribe( "2064917552","action1", function ( event , datastream_updated ) {
             // Display the current value from the updated datastream
             $("#config1").append( datastream_updated["current_value"] );
         });
 
     });
+
+
     xively.datastream.get (feedID, "sm2", function ( datastream ) {
         // WARNING: This code is only executed when we get a response back from Xively,
         // it will likely execute after the rest your script
